@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { walkUpBindingElementsAndPatterns } from "typescript";
+import { loadHomepage, assertTitle } from "../helpers";
 
 test("First basic test", async ({ page }) => {
   await page.goto("https://www.example.com");
@@ -45,18 +45,27 @@ test.describe("First test suite", () => {
   });
 });
 
-test.only("Screenshots", async ({ page }) => {
-  await page.goto("https://www.example.com");
-  await page.screenshot({
-    path: "./screenshots/screenshot1.png",
-    fullPage: true,
+test.describe.parallel.only("Screenshots suite", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("https://www.example.com");
+  });
+
+  test("Screenshots", async ({ page }) => {
+    await page.screenshot({
+      path: "./screenshots/screenshot1.png",
+      fullPage: true,
+    });
+  });
+
+  test("Single element screenshot", async ({ page }) => {
+    const element = await page.$("h1");
+    await element!.screenshot({
+      path: "./screenshots/screenshot2.png",
+    });
   });
 });
 
-test.only("Single element screenshot", async ({ page }) => {
-  await page.goto("https://www.example.com");
-  const element = await page.$("h1");
-  await element!.screenshot({
-    path: "./screenshots/screenshot2.png",
-  });
+test("Custom Helpers", async ({ page }) => {
+  await loadHomepage(page);
+  await assertTitle(page);
 });
