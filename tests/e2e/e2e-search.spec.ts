@@ -1,21 +1,24 @@
 import { test, expect } from "@playwright/test";
+import { HomePage } from "../../page_objects/HomePage";
+import { SearchPage } from "../../page_objects/SearchPage";
 
 test.describe.parallel("Search Results", () => {
-  test("Should find search results", async ({ page }) => {
-    await page.goto("http://zero.webappsecurity.com/index.html");
-    await page.fill("#searchTerm", "bank");
-    await page.keyboard.press("Enter");
+  let homePage: HomePage;
+  let searchPage: SearchPage;
 
-    const number = page.locator("li > a");
-    await expect(number).toHaveCount(2);
+  test.beforeEach(async ({ page }) => {
+    homePage = new HomePage(page);
+    searchPage = new SearchPage(page);
+    await homePage.visit();
+  });
+
+  test("Should find search results", async ({ page }) => {
+    await homePage.searchForPhrase("bank");
+    await searchPage.assertTable(2);
   });
 
   test("Should not find search results", async ({ page }) => {
-    await page.goto("http://zero.webappsecurity.com/index.html");
-    await page.fill("#searchTerm", "deez");
-    await page.keyboard.press("Enter");
-
-    const number = page.locator("li > a");
-    await expect(number).toHaveCount(0);
+    await homePage.searchForPhrase("deez");
+    await searchPage.assertTable(0);
   });
 });

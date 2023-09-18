@@ -1,24 +1,26 @@
 import { test, expect } from "@playwright/test";
+import { LoginPage } from "../../page_objects/LoginPage";
+import { HomePage } from "../../page_objects/HomePage";
 
 test.describe.parallel("Login/Logout Flow", () => {
+  let loginPage: LoginPage;
+  let homePage: HomePage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://zero.webappsecurity.com/");
-    await page.click("#signin_button");
+    loginPage = new LoginPage(page);
+    homePage = new HomePage(page);
+
+    await homePage.visit();
+    await homePage.clickOnSignInButton();
   });
 
   test("Negative scenario", async ({ page }) => {
-    await page.fill("#user_login", "deez");
-    await page.fill("#user_password", "nuts");
-    await page.click("text=Sign in");
-
-    const errorDiv = page.locator(".alert-error");
-    await expect(errorDiv).toContainText("Login and/or password are wrong.");
+    await loginPage.login("deez", "nuts");
+    await loginPage.assertErrorMessage();
   });
 
   test("Positive scenario", async ({ page }) => {
-    await page.fill("#user_login", "username");
-    await page.fill("#user_password", "password");
-    await page.click("text=Sign in");
+    await loginPage.login("username", "password");
     await page.goto("http://zero.webappsecurity.com/bank/transfer-funds.html");
 
     const tab = await page.locator("#account_summary_tab");
