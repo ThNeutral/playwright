@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.skip("First basic test", async ({ page }) => {
+test.only("First basic test", async ({ page }) => {
   await page.goto("https://www.example.com");
   const pageTitle = await page.locator("h1");
   await expect(pageTitle).toContainText("Example Domain");
@@ -29,7 +29,7 @@ test.describe("First test suite", () => {
     );
   });
 
-  test("Assertions", async ({ page }) => {
+  test("Assertions @myTag", async ({ page }) => {
     await page.goto("https://www.example.com");
     await expect(page).toHaveURL("https://www.example.com");
     await expect(page).toHaveTitle("Example Domain");
