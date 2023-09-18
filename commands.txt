@@ -1,0 +1,3 @@
+
+npx playwright test --config=playwright.config.ts --project=chromium --reporter=html
+

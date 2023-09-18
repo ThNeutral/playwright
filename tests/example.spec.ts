@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
+import { walkUpBindingElementsAndPatterns } from "typescript";
 
-test.only("First basic test", async ({ page }) => {
+test("First basic test", async ({ page }) => {
   await page.goto("https://www.example.com");
   const pageTitle = await page.locator("h1");
   await expect(pageTitle).toContainText("Example Domain");
@@ -41,5 +42,21 @@ test.describe("First test suite", () => {
 
     const nonExistingElement = await page.locator("h5");
     await expect(nonExistingElement).not.toBeVisible();
+  });
+});
+
+test.only("Screenshots", async ({ page }) => {
+  await page.goto("https://www.example.com");
+  await page.screenshot({
+    path: "./screenshots/screenshot1.png",
+    fullPage: true,
+  });
+});
+
+test.only("Single element screenshot", async ({ page }) => {
+  await page.goto("https://www.example.com");
+  const element = await page.$("h1");
+  await element!.screenshot({
+    path: "./screenshots/screenshot2.png",
   });
 });
