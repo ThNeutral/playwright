@@ -1,14 +1,20 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { LoginPage } from "../../page_objects/LoginPage";
 import { HomePage } from "../../page_objects/HomePage";
+import { TransferFundsPage } from "../../page_objects/TransferFundsPage";
+import { LogoutPage } from "../../page_objects/LogoutPage";
 
-test.describe.parallel("Login/Logout Flow", () => {
+test.describe.parallel.only("Login/Logout Flow", () => {
   let loginPage: LoginPage;
   let homePage: HomePage;
+  let transferFundsPage: TransferFundsPage;
+  let logoutPage: LogoutPage;
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     homePage = new HomePage(page);
+    transferFundsPage = new TransferFundsPage(page);
+    logoutPage = new LogoutPage(page);
 
     await homePage.visit();
     await homePage.clickOnSignInButton();
@@ -21,12 +27,10 @@ test.describe.parallel("Login/Logout Flow", () => {
 
   test("Positive scenario", async ({ page }) => {
     await loginPage.login("username", "password");
-    await page.goto("http://zero.webappsecurity.com/bank/transfer-funds.html");
+    await transferFundsPage.visit();
+    await transferFundsPage.assertVisibility();
 
-    const tab = await page.locator("#account_summary_tab");
-    await expect(tab).toBeVisible();
-
-    await page.goto("http://zero.webappsecurity.com/logout.html");
-    await expect(page).toHaveURL("http://zero.webappsecurity.com/index.html");
+    await logoutPage.visit();
+    await homePage.assertURL();
   });
 });

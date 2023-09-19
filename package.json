@@ -8,7 +8,10 @@
     "tests:chrome": "playwright test --config=playwright.config.ts --project=chromium",
     "tests:firefox": "playwright test --config=playwright.config.ts --project=firefox",
     "tests:webkit": "playwright test --config=playwright.config.ts --project=webkit",
-    "tests:e2e": "playwright test --config=e2e.config.ts --project=chromium"
+    "tests:e2e": "playwright test --config=e2e.config.ts --project=chromium",
+    "tests:visual": "playwright test --config=visual.config.ts --project=chromium",
+    "tests:visual:update": "playwright test --config=visual.config.ts --project=chromium --update-snapshots",
+    "tests:api": "playwright test --config=api.config.ts --project=chromium"
   },
   "author": "",
   "license": "ISC",

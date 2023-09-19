@@ -1,11 +1,11 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { LoginPage } from "../../page_objects/LoginPage";
 import { HomePage } from "../../page_objects/HomePage";
 import { PaySavedPayeePage } from "../../page_objects/PaySavedPayeePage";
 import { AddNewPayeePage } from "../../page_objects/AddNewPayeePage";
 import { PurchaseForeignCurrencyPage } from "../../page_objects/PurchaseForeignCurrencyPage";
 
-test.describe.parallel.only("Payment", () => {
+test.describe.parallel("Payment", () => {
   let loginPage: LoginPage;
   let homePage: HomePage;
   let paySavedPayeePage: PaySavedPayeePage;
@@ -38,7 +38,7 @@ test.describe.parallel.only("Payment", () => {
     await addNewPayeePage.assertFormSubmition();
   });
 
-  test.only("Purchase Foreign Currency", async ({ page }) => {
+  test("Purchase Foreign Currency", async ({ page }) => {
     await purchaseForeignCurrencyPage.visit();
     await purchaseForeignCurrencyPage.calculateCost();
     await purchaseForeignCurrencyPage.assertConversionLabel();

@@ -27,4 +27,10 @@ export class HomePage {
     await this.searchBox.fill(phrase);
     await this.page.keyboard.press("Enter");
   }
+
+  async assertURL() {
+    await expect(this.page).toHaveURL(
+      "http://zero.webappsecurity.com/index.html"
+    );
+  }
 }
