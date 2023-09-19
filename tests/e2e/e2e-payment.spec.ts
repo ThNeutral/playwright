@@ -1,9 +1,9 @@
 import { test } from "@playwright/test";
-import { LoginPage } from "../../page_objects/LoginPage";
-import { HomePage } from "../../page_objects/HomePage";
-import { PaySavedPayeePage } from "../../page_objects/PaySavedPayeePage";
-import { AddNewPayeePage } from "../../page_objects/AddNewPayeePage";
-import { PurchaseForeignCurrencyPage } from "../../page_objects/PurchaseForeignCurrencyPage";
+import { LoginPage } from "../../page_objects/old/LoginPage";
+import { HomePage } from "../../page_objects/old/HomePage";
+import { PaySavedPayeePage } from "../../page_objects/old/PaySavedPayeePage";
+import { AddNewPayeePage } from "../../page_objects/old/AddNewPayeePage";
+import { PurchaseForeignCurrencyPage } from "../../page_objects/old/PurchaseForeignCurrencyPage";
 
 test.describe.parallel("Payment", () => {
   let loginPage: LoginPage;

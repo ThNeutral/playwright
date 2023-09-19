@@ -11,12 +11,21 @@
     "tests:e2e": "playwright test --config=e2e.config.ts --project=chromium",
     "tests:visual": "playwright test --config=visual.config.ts --project=chromium",
     "tests:visual:update": "playwright test --config=visual.config.ts --project=chromium --update-snapshots",
-    "tests:api": "playwright test --config=api.config.ts --project=chromium"
+    "tests:api": "playwright test --config=api.config.ts --project=chromium",
+    "tests:tips": "playwright test --config=tips.config.ts --project=chromium",
+    "tests:reporter": "playwright test --config=reporter.config.ts --reporter=./reporter/reporter.ts --project=chromium"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cucumber/cucumber": "^9.5.1",
     "@playwright/test": "^1.38.0",
+    "chai": "^4.3.8",
+    "cucumber-html-reporter": "^7.1.1",
+    "playwright": "^1.38.0",
     "prettier": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.6.2"
   }
 }

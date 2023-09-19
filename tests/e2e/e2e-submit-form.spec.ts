@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { HomePage } from "../../page_objects/HomePage";
-import { FeedbackPage } from "../../page_objects/FeedbackPage";
+import { HomePage } from "../../page_objects/old/HomePage";
+import { FeedbackPage } from "../../page_objects/old/FeedbackPage";
 
 test.describe.parallel("Feedback Form", () => {
   let homePage: HomePage;

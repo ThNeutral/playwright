@@ -1,8 +1,8 @@
 import { test } from "@playwright/test";
-import { LoginPage } from "../../page_objects/LoginPage";
-import { HomePage } from "../../page_objects/HomePage";
-import { TransferFundsPage } from "../../page_objects/TransferFundsPage";
-import { LogoutPage } from "../../page_objects/LogoutPage";
+import { LoginPage } from "../../page_objects/old/LoginPage";
+import { HomePage } from "../../page_objects/old/HomePage";
+import { TransferFundsPage } from "../../page_objects/old/TransferFundsPage";
+import { LogoutPage } from "../../page_objects/old/LogoutPage";
 
 test.describe.parallel.only("Login/Logout Flow", () => {
   let loginPage: LoginPage;

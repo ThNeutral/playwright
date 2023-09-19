@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../../page_objects/LoginPage";
-import { HomePage } from "../../page_objects/HomePage";
+import { LoginPage } from "../../page_objects/old/LoginPage";
+import { HomePage } from "../../page_objects/old/HomePage";
 
 test.describe.parallel("Filter tests", () => {
   let loginPage: LoginPage;

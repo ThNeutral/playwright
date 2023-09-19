@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { HomePage } from "../../page_objects/HomePage";
-import { SearchPage } from "../../page_objects/SearchPage";
+import { HomePage } from "../../page_objects/old/HomePage";
+import { SearchPage } from "../../page_objects/old/SearchPage";
 
 test.describe.parallel("Search Results", () => {
   let homePage: HomePage;
